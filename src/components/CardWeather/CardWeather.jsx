@@ -5,13 +5,13 @@ import { useState, useEffect, useRef } from 'react';
 const CardWeather = () => {
 	const [weather, setWeather] = useState(null);
 	const [errorMsg, setErrorMsg] = useState('');
-	const url = import.meta.env.VITE_API_URL + import.meta.env.VITE_API_KEY;
+	const key = import.meta.env.VITE_API_KEY;
 
 	const loaderRef = useRef();
 	const errorContainerRef = useRef();
 	useEffect(() => {
 		loaderRef.current.classList.add('active');
-		fetch(url)
+		fetch(`https://api.airvisual.com/v2/nearest_city?key=${key}`)
 			.then((res) => res.json())
 			.then((data) => {
 				loaderRef.current.classList.remove('active');
