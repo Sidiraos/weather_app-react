@@ -1,0 +1,11 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, Helvetica, sans-serif;
+  background: #1e48aa;
+  padding: 0 10px;
+}
