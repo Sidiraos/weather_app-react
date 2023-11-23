@@ -23,7 +23,7 @@ jobs:
             - name: Build project
               run: npm run build
               env:
-                  VITE_API_KEY: ${{secrets.VITE_API_KEY }}
+                  VITE_API_KEY: ${{secrets.VITE_API_KEY}}
 
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v3

@@ -48,7 +48,7 @@ const CardWeather = () => {
 					<>
 						<p className="city-name">{weather.city}</p>
 						<p className="country-name">{weather.country}</p>
-						<p className="temperature">{weather.temp}°C</p>
+						<p className="temperature">{weather.temp}°</p>
 						<div className="info-icon-container">
 							<img
 								src={`/public/icons/${weather.ic}.svg`}
