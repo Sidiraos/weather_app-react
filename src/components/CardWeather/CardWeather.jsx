@@ -1,4 +1,5 @@
 import loader from '../../assets/loader.svg';
+import errorIcon from '../../assets/browser.svg';
 import './CardWeather.css';
 import { useState, useEffect, useRef } from 'react';
 
@@ -60,7 +61,7 @@ const CardWeather = () => {
 						className="error-message-container"
 						ref={errorContainerRef}
 					>
-						<img src="/src/assets/browser.svg" alt="error icon" />
+						<img src={errorIcon} alt="error icon" />
 						<p className="error-message">{errorMsg}</p>
 					</div>
 				)}
