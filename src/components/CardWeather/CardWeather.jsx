@@ -32,7 +32,7 @@ const CardWeather = () => {
 				}
 			})
 			.catch((err) => {
-				console.log('erreur de requete : ', err);
+				// console.log('erreur de requete : ', err);
 				errorMsg && errorContainerRef.current.classList.add('active');
 				setErrorMsg('Error 404. Please try again later.', err.message);
 			});
