@@ -7,6 +7,7 @@ const CardWeather = () => {
 	const [weather, setWeather] = useState(null);
 	const [errorMsg, setErrorMsg] = useState('');
 	const API_KEY = import.meta.env.VITE_API_KEY;
+	// console.log(API_KEY);
 
 	const loaderRef = useRef();
 	const errorContainerRef = useRef();
@@ -25,6 +26,7 @@ const CardWeather = () => {
 						temp: data.data.current.weather.tp,
 						ic: data.data.current.weather.ic,
 					});
+					errorMsg && setErrorMsg('');
 				} else {
 					errorContainerRef.current.classList.add('active');
 					setErrorMsg(data.data.message);
@@ -32,9 +34,9 @@ const CardWeather = () => {
 				}
 			})
 			.catch((err) => {
-				// console.log('erreur de requete : ', err);
+				// console.log(err);
 				errorMsg && errorContainerRef.current.classList.add('active');
-				setErrorMsg('Error 404. Please try again later.', err.message);
+				setErrorMsg('Error 404. Please try again later.');
 			});
 	}, []);
 
