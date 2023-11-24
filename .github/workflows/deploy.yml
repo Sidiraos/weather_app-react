@@ -19,8 +19,7 @@ permissions:
 concurrency:
     group: 'pages'
     cancel-in-progress: true
-env:
-    VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+#Allow repo secret
 
 jobs:
     # Single deploy job since we're just deploying
@@ -41,6 +40,8 @@ jobs:
               run: npm install
             - name: Build
               run: npm run build
+              env:
+                  VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
             - name: Setup Pages
               uses: actions/configure-pages@v3
             - name: Upload artifact
