@@ -12,12 +12,19 @@ const CardWeather = () => {
 	const loaderRef = useRef();
 	const errorContainerRef = useRef();
 	useEffect(() => {
+		errorContainerRef.current.classList.remove('active');
 		loaderRef.current.classList.add('active');
 		fetch(`https://api.airvisual.com/v2/nearest_city?key=${API_KEY}`)
-			.then((res) => res.json())
+			.then((response) => {
+				// console.log(response);
+				// if (!response.ok) {
+				// 	throw new Error('Something went wrong');
+				// }
+				return response.json();
+			})
 			.then((data) => {
 				loaderRef.current.classList.remove('active');
-
+				// console.log(data);
 				if (data.status === 'success') {
 					errorContainerRef.current.classList.remove('active');
 					setWeather({
@@ -28,15 +35,17 @@ const CardWeather = () => {
 					});
 					errorMsg && setErrorMsg('');
 				} else {
-					errorContainerRef.current.classList.add('active');
-					setErrorMsg(data.data.message);
-					setWeather(null);
+					// console.log(data);
+					throw new Error(`${data.data.message}`);
 				}
 			})
 			.catch((err) => {
-				// console.log(err);
-				errorMsg && errorContainerRef.current.classList.add('active');
-				setErrorMsg('Error 404. Please try again later.');
+				loaderRef.current.classList.contains('active') &&
+					loaderRef.current.classList.remove('active');
+				// console.dir(err);
+				setErrorMsg(err.message);
+				errorContainerRef.current.classList.add('active');
+				setWeather(null);
 			});
 	}, []);
 
